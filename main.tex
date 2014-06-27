@@ -14,11 +14,13 @@
 \usepackage{float}
 \usepackage[italian]{babel}
 
-\usepackage[sans,nowrite,infront,standard,swapnames]{frontespizio}
+\usepackage[noadvisor,swapnames]{frontespizio}
 
 \begin{document}
 
+
 \begin{frontespizio}
+<<<<<<< HEAD
 		\fontoptionnormal 
 		\Universita {Bari Aldo Moro}
 		\Logo [2cm]{./images/logo}
@@ -31,13 +33,30 @@
 		\Candidato{Simone Rutigliano}
 		\Annoaccademico {2013-2014}
 		\preparefrontpagestandard	%Frontespizio
+=======
+\Universita {Bari "Aldo Moro"}
+\Logo [2cm]{./images/logo}
+\Dipartimento{Informatica}
+\Corso [Laurea]{Informatica Magistrale}
+\Titoletto {Documentazione di progetto di Intelligenza Artificiale}
+\Titolo{Text Extraction in ambito giuridico}
+\NCandidato{Studenti}
+\Candidato{Luciano Quercia}
+\Candidato{Simone Rutigliano}
+\Annoaccademico {2013-2014}
+\Margini{4cm}{4.5cm}{4cm}{4cm}
+>>>>>>> 44ff0efcf76308fa1b8c50ff79766e68746dec78
 \end{frontespizio}
 
-\input{introduction}
-\input{relatedworks}
-\input{project}
-\input{measures}
-\input{experiment}
+
+\nocite{mirizzilinked}
+
+
+%\input{introduction}
+%\input{relatedworks}
+%\input{project}
+%\input{measures}
+%\input{experiment}
 
 \bibliographystyle{abbrvnat}
 \bibliography{mybib}
