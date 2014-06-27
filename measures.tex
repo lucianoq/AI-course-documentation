@@ -1,0 +1,112 @@
+\section{Misure}
+\label{measures}
+
+\subsection{Distanze}
+
+Il nostro recommender system è stato testato su quattro diverse misure di distanza.
+Le prime due sono descritte in \citet{passant2010measuring}, le altre due sono state realizzate \emph{ex novo} e rappresentano una nuova visione pesata delle precedenti.
+
+
+\subsubsection{Passant Direct}
+\label{PassantD}
+La distanza diretta. Indica il numero di archi diretti che collegano i film $a$ e $b$. Tenendo conto che il grafo preso in considerazione è orientato, vanno presi gli archi in entrambe le direzioni.
+
+In maniera formale, definita $$C_{d}(f_a,f_b) = \left\vert \left\{ e \in Edges \  | \  (f_a \xrightarrow{~e~} f_b ) \right\} \right\vert$$ la formula della distanza completa sarà quindi:
+
+%\begin{figure}[htbp]
+%  \centering
+%    \label{LDSD}
+%    \begin{equation}
+%        P_{d}(r_{a},r_{b}) = \frac{1} {1+C_{d}(n,r_{a},r_{b})+C_{d}(n,r_{b},r_{a})}
+%    \end{equation}
+%      \caption{LDSD Distance}
+%      \label{LDSD1}
+%\end{figure}
+
+    \begin{equation}
+        P_{d}(f_{a},f_{b}) = \frac{1} {1+C_{d}(f_{a},f_{b})+C_{d}(f_{b},f_{a})}
+    \end{equation}
+
+\subsubsection{Passant Combinated}
+\label{PassantC}
+
+La distanza combinata compone la precedente distanza diretta con una misura
+(PassantI) che prende in considerazione i percorsi che uniscono due film
+attraverso un film in comune.
+
+PassantI restituisce un valore che indica il numero di archi che
+mettono in relazione i due film attraverso dei film in comune.
+
+Formalmente, definiti:
+$$C_{io}(f_a,f_b) = \left\vert \left\{ f \  | \  (f_a \xrightarrow{~e~} f ) \wedge (f_b \xrightarrow{~e~} f) \right\} \right\vert$$
+$$C_{ii}(f_a,f_b) = \left\vert \left\{ f \  | \  ( f \xrightarrow{~e~} f_a ) \wedge ( f \xrightarrow{~e~} f_b) \right\} \right\vert$$
+$$\text{con} \ e \in Edges  , \qquad f_a,f_b,f \in Films $$
+
+la formula indiretta di Passant è:
+    \begin{equation*}
+        P_i(f_{a},f_{b}) = \frac{1} {1+C_{io}(f_{a},f_{b})+C_{ii}(f_{a},f_{b})}
+    \end{equation*}
+
+La formula combinata sarà:
+
+    \begin{equation}
+P_{c}(f_{a},f_{b}) = \frac{1} {1+C_{d}(f_{a},f_{b})+C_{d}(f_{b},f_{a})+C_{io}(f_{a},f_{b})+C_{ii}(f_{a},f_{b})}
+    \end{equation}
+
+
+\subsubsection{Passant Direct Weighted}
+\label{PassantDW}
+La distanza diretta pesata, realizzata da noi, è una variazione della distanza diretta descritta in \ref{PassantD} che, invece che contare il numero di archi, somma i pesi di ciascun arco.
+
+In maniera formale, dati:
+
+\begin{equation*}
+ED_{f_a,f_b} = \left\{ e \in Edges \quad\big\vert\quad f_a \xrightarrow{~e~} f_b \right\}\qquad\footnote{Ricordando che, nel nostro caso, trattandosi di un multigrafo, possono esserci più archi a collegare $f_a$ e $f_b$}
+\end{equation*}
+
+\begin{equation*}
+CW_{d}(f_a,f_b) = \sum_{e \in ED}^{}{weight(e)}
+\end{equation*}
+
+\begin{equation}
+P_{dw}(f_a,f_b) = \frac{1}{1+CW_{d}(f_a,f_b)+CW_{d}(f_b,f_a)}
+\end{equation}
+
+\subsubsection{Passant Combinated Weighted}
+\label{PassantCW}
+La distanza combinata pesata utilizza la precedente diretta pesata
+\ref{PassantDW} insieme con la distanza che prende in considerazione i percorsi che uniscono due film attraverso un film in comune.
+
+La distanza combinata, quindi, prende in considerazione sia gli archi diretti che gli archi indiretti (quelli che uniscono i film $a$ e $b$ passando da un film $c$ comune, come descritto in \ref{PassantC}). In questo caso, tuttavia, tutti gli archi sono pesati e la distanza corrisponde ad una sommatoria di pesi.
+
+In maniera formale, dati
+\begin{eqnarray*}
+E'_{f_a,f_b} = & \left\{ (e_1, e_2) \in Edges ~ \big\vert ~ (f_a \xrightarrow{e_1} f_c) \wedge (f_b \xrightarrow{e_2} f_c) \wedge label(e_1)=label(e_2) \right\} \\
+E''_{f_a,f_b} = & \left\{ (e_1, e_2) \in Edges ~ \big\vert ~ (f_c \xrightarrow{e_1} f_a) \wedge (f_c \xrightarrow{e_2} f_b) \wedge label(e_1)=label(e_2) \right\}
+\end{eqnarray*}
+
+\begin{eqnarray*}
+CW_{io}(f_a,f_b) = \sum_{(e_1,e_2) \in E'_{f_a,f_b}}{weight(e_1)*weight(e_2)}\\
+CW_{ii}(f_a,f_b) = \sum_{(e_1,e_2) \in E''_{f_a,f_b}}{weight(e_1)*weight(e_2)}
+\end{eqnarray*}
+
+\begin{equation*}
+P_{cw}(f_{a},f_{b}) = \frac{1} {1+CW_{d}(f_a,f_b)+CW_{d}(f_b,f_a)+CW_{io}(f_a,f_b)+CW_{ii}(f_a,f_b)}
+\end{equation*}
+
+\subsection{Rappresentazione dei profili utente}
+\label{profili}
+
+Ogni utente deve essere profilato per poter registrare i suoi interessi,
+affinché gli si possano raccomandare nuovi film corretti.
+Per fare questo abbiamo sviluppato due tipi di rappresentazione dell'utente.
+Il primo, più semplice, è il \emph{profilo non pesato}. In esso rappresentiamo i film visti in due insiemi, positivi e negativi. Il primo insieme viene utilizzato per migliorare le raccomandazioni mentre il secondo solo per tenere traccia dei film già visti e non raccomandarli nuovamente.
+Il secondo è il \emph{profilo pesato}. In esso si tiene traccia di tutti i film
+visti e del loro voto, in modo da pesare la loro influenza sul calcolo della
+distanza. I film valutati positivamente influiranno avvicinando le potenziali raccomandazioni al profilo, tanto più quanto maggiore sarà il voto ricevuto. I film valutati negativamente, invece, aumenteranno la distanza.
+Il peso dato a ciascun film del profilo sarà quindi pesato in relazione al voto ricevuto secondo la formula:
+$$
+P_{NORM}(f_a) = Voto(f_a)- Voto_M
+$$
+
+In una scala di $n$ valori, essi verranno traslati nell'intervallo $\left[-\frac{n}{2};\frac{n}{2}\right]$

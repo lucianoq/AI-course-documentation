@@ -1,0 +1,87 @@
+\documentclass[a4paper,12pt,oneside,onecolumn]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[round,numbers]{natbib}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage[T1]{fontenc}
+\usepackage[scaled=0.9]{beramono}
+\usepackage{microtype}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{lipsum}
+\definecolor{light-gray}{gray}{0.95}
+\usepackage{float}
+\usepackage[italian]{babel}
+
+\title{Linked Open Data for content-based recommender systems} % Title
+\author{Luciano \textsc{Quercia}\\Simone \textsc{Rutigliano} }
+\date{\today}
+
+\definecolor{delim}{RGB}{20,105,176}
+\definecolor{keyword}{RGB}{20,105,176}
+\colorlet{numb}{magenta!60!black}
+\colorlet{punct}{red!60!black}
+
+\lstdefinelanguage{xmlnostro}{
+    basicstyle=\fontsize{8}{10}\selectfont\ttfamily\SetTracking{encoding=*}{-50}\lsstyle,
+    backgroundcolor=\color{light-gray},
+    numbers=left,
+    numberstyle=\scriptsize,
+    columns=fullflexible,
+    stepnumber=1,
+    numbersep=8pt,
+    showstringspaces=false,
+    breaklines=true,
+    frame=lines,
+    xleftmargin=25mm,
+    xrightmargin=10mm,
+	framexleftmargin=15mm,
+	breakatwhitespace=false,
+	%numberstyle=\footnotesize,
+	numbersep=10pt,
+	tabsize=2,
+	captionpos=b,
+    literate=
+     *{0}{{{\color{numb}0}}}{1}
+      {1}{{{\color{numb}1}}}{1}
+      {2}{{{\color{numb}2}}}{1}
+      {3}{{{\color{numb}3}}}{1}
+      {4}{{{\color{numb}4}}}{1}
+      {5}{{{\color{numb}5}}}{1}
+      {6}{{{\color{numb}6}}}{1}
+      {7}{{{\color{numb}7}}}{1}
+      {8}{{{\color{numb}8}}}{1}
+      {9}{{{\color{numb}9}}}{1}
+      {:}{{{\color{punct}{:}}}}{1}
+      {,}{{{\color{punct}{,}}}}{1}
+      {"}{{{\color{punct}{"}}}}{1}
+      {'}{{{\color{punct}{'}}}}{1}
+      {\{}{{{\color{delim}{\{}}}}{1}
+      {\}}{{{\color{delim}{\}}}}}{1}
+      {<}{{{\color{delim}{<}}}}{1}
+      {>}{{{\color{delim}{>}}}}{1}
+      {</}{{{\color{delim}{</}}}}{1}
+      {/>}{{{\color{delim}{/>}}}}{1}
+      {?}{{{\color{delim}{?}}}}{1}
+      %{xml}{{{\color{keyword}{xml}}}}{1}
+      %{xmlns}{{{\color{keyword}{xmlns}}}}{1},
+}
+
+\lstset{language=xmlnostro}
+
+\begin{document}
+
+\maketitle	
+
+\input{introduction}
+\input{relatedworks}
+\input{project}
+\input{measures}
+\input{experiment}
+
+\bibliographystyle{abbrvnat}
+\bibliography{mybib}
+
+\end{document}
