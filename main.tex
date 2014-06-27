@@ -14,25 +14,27 @@
 \usepackage{float}
 \usepackage[italian]{babel}
 
-\usepackage[sans,nowrite,infront,standard,swapnames]{frontespizio}
+\usepackage[noadvisor,swapnames]{frontespizio}
+
+\begin{document}
+
 
 \begin{frontespizio}
-		\fontoptionnormal 
-		\Universita {Bari Aldo Moro}
-		\Logo [2cm]{./images/logo}
-		\Facolta {Scienze Matematiche, Fisiche e Naturali}
-		\Corso [Laurea]{Informatica Magistrale}
-		\Titoletto {Intelligenza Artificiale}
-		\Titolo {Documentazione progetto}
-		\NCandidato{Studenti}
-		\Candidato{Luciano Quercia}
-		\Candidato{Simone Rutigliano}
-		\Annoaccademico {2013-2014}
-		\preparefrontpagestandard	%Frontespizio
+\Universita {Bari "Aldo Moro"}
+\Logo [2cm]{./images/logo}
+\Dipartimento{Informatica}
+\Corso [Laurea]{Informatica Magistrale}
+\Titoletto {Documentazione di progetto di Intelligenza Artificiale}
+\Titolo{Text Extraction in ambito giuridico}
+\NCandidato{Studenti}
+\Candidato{Luciano Quercia}
+\Candidato{Simone Rutigliano}
+\Annoaccademico {2013-2014}
+\Margini{4cm}{4.5cm}{4cm}{4cm}
 \end{frontespizio}
 
 
-\begin{document}
+\nocite{mirizzilinked}
 
 
 %\input{introduction}

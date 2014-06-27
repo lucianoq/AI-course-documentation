@@ -36,3 +36,5 @@
 *.bak
 *.ini
 *(busy)
+*-frn.tex
+
