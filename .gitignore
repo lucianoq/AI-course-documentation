@@ -25,6 +25,7 @@
 *.out
 *.pdfsync
 *.ps
+*.save
 *.snm
 *.synctex
 *.synctex.gz

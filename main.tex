@@ -18,20 +18,19 @@
 
 \begin{document}
 
-
-\begin{frontespizio}
-\Universita {Bari ''Aldo Moro"}
-\Logo [2cm]{./images/logo}
-\Dipartimento{Informatica}
-\Corso [Laurea]{Informatica Magistrale}
-\Titoletto {Documentazione di progetto di Intelligenza Artificiale}
-\Titolo{Text Extraction d in ambito giuridico}
-\NCandidati{Studenti}
-\Candidato{Luciano Quercia}
-\Candidato{Simone Rutigliano}
-\Annoaccademico {2013-2014}
-\Margini{4cm}{4.5cm}{4cm}{4cm}
-\end{frontespizio}
+    \begin{frontespizio}
+        \Universita {Bari ''Aldo Moro"}
+        \Logo [2cm]{./images/logo}
+        \Dipartimento{Informatica}
+        \Corso [Laurea]{Informatica Magistrale}
+        \Titoletto {Documentazione di progetto di Intelligenza Artificiale}
+        \Titolo{Text Extraction d in ambito giuridico}
+        \NCandidati{Studenti}
+        \Candidato{Luciano Quercia}
+        \Candidato{Simone Rutigliano}
+        \Annoaccademico {2013-2014}
+        \Margini{4cm}{4.5cm}{4cm}{4cm}
+    \end{frontespizio}
 
 
 \nocite{mirizzilinked}
@@ -42,6 +41,125 @@
 %\input{project}
 %\input{measures}
 %\input{experiment}
+
+
+%MALERBA
+
+%Indice
+%1 Introduzione 2
+%    1.1 Sistemi esperti per la conﬁgurazione . . . . . . . . . . 2
+%    1.2 Scopo del progetto . . . . . . . . 2
+%2 Studio del dominio 3
+%    2.1 Descrizione del dominio . . . . . 3
+%    2.2 Studio del dominio e fonti utilizzate . . . . . . . . . . 3
+%    2.3 Individuazione delle componenti di un sistema . . . . . 5
+%    2.4 Individuazione dei bisogni dell’utente . . . . . . . . . . 7
+%3 Progettazione 9
+%    3.1 Concettualizzazione . . . . . . . 9
+%    3.2 Oggetti del dominio . . . . . . . 9
+%    3.3 Individuazione delle funzioni . . . 10
+%    3.4 Individuazione delle relazioni . . 12
+%    3.5 Dalla concettualizzazione alle regole . . . . . . . . . . 14
+%    3.6 Strategia risolutiva . . . . . . . . 16
+%4 Implementazione 17
+%    4.1 Le regole . . 17
+%    4.2 L’inferenza 21
+%5 Componenti aggiuntive 22
+%    5.1 Gestione dell’incertezza . . . . . 23
+%    5.2 Come e perch´e . . . . . . . . . . 26
+%    5.3 Interazione con l’utente . . . . . 27
+%    5.4 Alcune funzioni utili . . . . . . . 29
+%6 Interfaccia graﬁca ed esempi di esecuzione 31
+%    6.1 Schermata iniziale . . . . . . . . 31
+%    6.2 Esempio di interazione . . . . . . 32
+%    6.3 Utilizzo della funzione spiega domanda . . . . . . . . . 33
+%    6.4 Presentazione dei risultati . . . . 34
+%    6.5 Utilizzo della funzione spiega ragionamento . . . . . . 35
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Alessio Tedeschi
+
+%INTRODUZIONE AI PROBLEMI DI SODDISFACIMENTO DI VINCOLI	
+%    DEFINIZIONI 	
+%    TIPOLOGIA DI CSP  
+%    VARIETÀ	DI  VINCOLI
+%    CSP NEL  MONDO  REALE  4 	
+% 
+%SISTEMA  IN  PROLOG  PER  LA  GESTIONE  DI  UN  ORARIO  SCOLASTICO  
+%    SCOPO  DEL  PROGETTO 
+%    DESCRIZIONE  DEL  DOMINIO 
+%    TIPOLOGIE  DI  ORARI  SCOLASTICI 
+%    IDEE  PER  LA  RISOLUZIONE 
+%    STUDIO  DEL  DOMINIO  E  FONTI  UTILIZZATE  6 
+
+%PROGETTAZIONE   10 
+%    INDIVIDUAZIONE  DELLE  COMPONENTI  DEL  SISTEMA 
+%    CONCETTUALIZZAZIONE 
+%    OGGETTI  DEL  DOMINIO 
+%    INDIVIDUAZIONE  DELLE  FUNZIONI 
+%    INDIVIDUAZIONE  DELLE  RELAZIONI 
+%    VINCOLI  DEL  SISTEMA 
+%    FUNZIONALITÀ  DEL  SISTEMA 
+%    MOTORE  DEL   SISTEMA 
+%    FORMALISMO   REGOLE 
+%    L’INTERPRETE   FORWARD 
+%    STRATEGIE   RiSOLUTIVE 
+%    VARIABILI  DEL  PROBLEMA 
+%    GENERATE  AND   TEST 
+%    STANDARD   BACKTRACKING 
+%    FOWRWARD   CHECKING 
+%    MECCANISMO  DI   SPIEGAZIONE 
+%    PROCEDURA   MODIFICA 
+%    MECCANISMO  PER  RENDERE  IL  SISTEMA   D ETERMINISTICO 
+%    TEST 
+%    TEMPI  DI  PIANIFICAZIONE  10 
+
+%SVILUPPI  FUTURI  
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Alessandro Natilla
+
+%1.Introduzione, analisi dei requisiti e generalità
+%    1.1 Finalità di DepJaeger 
+%    1.2 Requisiti di sistema
+%    1.3 Modalit`a di esecuzione 
+
+%2.Analisi dei requisiti
+%    2.1 Prolog e la programmazione logica
+%    2.2 Sintassi Prolog
+
+%3.Progettazione
+%    3.1 Oggetti del dominio 
+%    3.2 Individuazione delle relazioni
+%        3.2.1 Espressione delle relazioni fra predicati all’interno del
+%    sistema
+%        3.2.2 Espressione delle relazioni fra moduli all’interno del
+%    sistema
+%    3.3 Implementazione e strategia solutiva
+%        3.3.1 Inizializzazione
+%        3.3.2 Analisi dei moduli importati
+%        3.3.3 Analisi dei predicati
+%        3.3.4 Valutazione ed estrazione delle informazioni obiettivo
+%4.Descrizione del sistema
+%    4.1 Sezioni ed operazioni disponibili
+%        4.1.1 Caricamento di file
+%        4.1.2 Analisi dei moduli
+%        4.1.3 Generazione dei grafi delle dipendenze
+%        4.1.4 Analisi dei predicati
+%        4.1.5 Reset delle condizioni iniziali
+%    4.2 Interazione con l’utente
+%        4.2.1 Protocollo di comunicazione Java-Prolog
+%        4.2.2 Classi Java
+%    4.3 Funzionamento di DepJaeger 
+%        4.3.1 Caricamento di file
+%        4.3.2 Analisi di un modulo 
+%        4.3.3 Analisi di un predicato
+%Conclusioni e sviluppi futuri
+%Bibliografia
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \bibliographystyle{abbrvnat}
 \bibliography{mybib}

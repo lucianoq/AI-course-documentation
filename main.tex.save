@@ -1,0 +1,49 @@
+\documentclass[a4paper,12pt,oneeside,onecolumn]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[round,numbers]{natbib}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage[T1]{fontenc}
+\usepackage[scaled=0.9]{beramono}
+\usepackage{microtype}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{lipsum}
+\usepackage{float}
+\usepackage[italian]{babel}
+
+\usepackage[noadvisor,swapnames]{frontespizio}
+
+\begin{document}
+
+
+\begin{frontespi\Universita {Bari "Aldo Moro"}
+\Logo [2cm]{./images/logo}
+\Dipartimento{Informatica}
+\Corso [Laurea]{Informatica Magistrale}
+\Titoletto {Documentazione di progetto di Intelligenza Artificiale}
+\Titolo{Text Extraction in ambito giuridico}
+\NCandidato{Studenti}
+\Candidato{Luciano Quercia}
+\Candidato{Simone Rutigliano}
+\Annoaccademico {2013-2014}
+\Margini{4cm}{4.5cm}{4cm}{4cm}
+>>>>>>> 44ff0efcf76308fa1b8c50ff79766e68746dec78
+\end{frontespizio}
+
+
+\nocite{mirizzilinked}
+
+
+%\input{introduction}
+%\input{relatedworks}
+%\input{project}
+%\input{measures}
+%\input{experiment}
+
+\bibliographystyle{abbrvnat}
+\bibliography{mybib}
+
+\end{document}
