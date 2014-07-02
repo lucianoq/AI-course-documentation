@@ -28,9 +28,48 @@ nell’elenco seguente):
     \end{itemize}
     
 \subsection{Interazione con l’utente}
-L’interazione avviene principalmente tramite l’interfaccia grafica descritta nelle sezioni seguenti.
- La comunicazione fra il lato Java e quello Prolog sono riportate nella finestra di terminale da cui si `e lanciato l’eseguibile. Inoltre, viene data la possibilità di utilizzare il sistema anche direttamente dalla linea di comando dell’interprete Prolog, caricando il file main.pl. Le funzionalità offerte rimangono invariate. 
- 
+L’interazione avviene principalmente tramite l'interfaccia grafica descritta nella sezione precedente ma viene data anche la possibilità di interagire con il sistema anche senza l'ausilio di tale interfaccia, utilizzando direttamente l'interprete Prolog da terminale, previa consultazione del modulo principale del sistema denominato \emph{main.pl}; le funzionalità del sistema sono indipendenti dal metodo con cui si vuole interagire con il  sistema. Qualora si volesse tener traccia anche di come avviene la comunicazione tra java e prolog, è possibile visionare tale interazione all'interno della finestra di terminale da cui si è lanciato il sistema.
+
+\subsubsection{JPL Library}
+La libreria utilizzata per permettere la bidirezionalità della comunicazione tra Java e Prolog, è stata la \emph{JPL 3.1.4 alpha}\footnote{Scaricabile da \url{http://mvnrepository.com/artifact/jpl/jpl/3.1.4-alpha}} (\textbf{J}ava-calls-\textbf{P}rolog \textbf{L}ibrary)
+
+
+The JPL 3.0.1 Java-calls-Prolog API provides a set of classes that hide almost all of the messy detail in the Low-Level Interface.  It is less flexible than the Low-Level Interface, but it also has less of a learning curve, and in many ways is more natural and Prolog-like than the Low-Level Interface.
+
+The Java package jpl contains all of the classes in this interface.  None of the classes correspond with any of the data types in the Prolog Foreign Language Interface (FLI). 
+
+
+The Class Hierarchy
+
+The API consists of the following class hierarchy:
+\begin{Verbatim}
+Term
+|
++--- Variable
+|
++--- Compound
+|      |
+|      +--- Atom
+|
++--- Integer
+|
++--- Float
+
+Query
+
+JPLException
+|
++-- PrologException
+\end{Verbatim}
+\begin{Verbatim}
+Term is an abstract class: only its subclasses can be instantiated.
+
+Each instance of Query contains a Term (denoting the goal which is to be proven), and much more besides.
+
+Each instance of Compound has a (java.lang.String) name and an array of (Term) arguments (it must have at least one).
+
+Atom is a specialisation of Compound with zero arguments. 
+
   JPL.setNativeLibraryDir(yapJPLPath);
   
   prolog.consult(new Atom("prolog/main.pl"));
@@ -38,6 +77,88 @@ L’interazione avviene principalmente tramite l’interfaccia grafica descritta
   Term toAssert = new Compound("domanda", new Term[]{Util.textToTerm("\"" + textPane.getText() + "\"")});
   prolog.asserta(toAssert);
   java.util.Hashtable<String, Term>[] hashtables = prolog.allSolutions(new Compound("nextTag", new Term[]{new Variable("Tag")}));
+  
+  \end{Verbatim}
+  \begin{javacode}
+  package it.uniba.di.ia.ius;
+  
+  import jpl.*;
+  
+  public class Prolog {
+  	
+  	public boolean consult(Atom atom) {
+  		Term t = new Compound("consult", new Term[]{atom});
+  		Query query = new Query(t);
+  		System.out.print("[Prolog] consult: " + t + " ");
+  		System.out.println(query.hasSolution() ? "succeeded" : "failed");
+  		return query.hasSolution();
+  	}
+  	
+  	public void asserta(Term term) {
+  		Term t = new Compound("asserta", new Term[]{term});
+  		Query query = new Query(t);
+  		System.err.print("[Prolog] asserta( " + term + " ) ");
+  		System.err.println(query.hasSolution() ? "succeeded" : "failed");
+  	}
+  	
+  	public void assertz(Term term) {
+  		Term t = new Compound("assertz", new Term[]{term});
+  		Query query = new Query(t);
+  		System.err.print("[Prolog] assertz( " + term + " ) ");
+  		System.err.println(query.hasSolution() ? "succeeded" : "failed");
+  	}
+  	
+  	public void retract(Term term) {
+  		Term t = new Compound("retract", new Term[]{term});
+  		Query query = new Query(t);
+  		System.err.print("[Prolog] retract( " + term + " ) ");
+  		System.err.println(query.hasSolution() ? "succeeded" : "failed");
+  	}
+  	
+  	public void retractAll(String predicate, int arity) {
+  		
+  		Term[] args = new Term[arity];
+  		for (int i = 0; i < args.length; i++)
+  		args[i] = new Variable("_");
+  		
+  		Term[] termToRetract = new Term[]{ new Compound(predicate, args) };
+  		
+  		Term t = new Compound("retractall", termToRetract);
+  		Query query = new Query(t);
+  		System.err.print("[Prolog] retract( " + predicate + " ) ");
+  		System.err.println(query.hasSolution() ? "succeeded" : "failed");
+  	}
+  	
+  	public boolean statisfied(Term t) {
+  		Query query = new Query(t);
+  		System.err.print("[Prolog] query: " + t + " ");
+  		System.err.println(query.hasSolution() ? "succeeded" : "failed");
+  		return query.hasSolution();
+  	}
+  	
+  	public java.util.Hashtable oneSolution(Term t) {
+  		Query query = new Query(t);
+  		System.err.print("[Prolog] query: " + t + " ");
+  		System.err.println(query.hasSolution() ? "succeeded" : "failed");
+  		return query.oneSolution();
+  	}
+  	
+  	public java.util.Hashtable[] nSolutions(Term t, long size) {
+  		Query query = new Query(t);
+  		System.err.print("[Prolog] query: " + t + " ");
+  		System.err.println(query.hasSolution() ? "succeeded" : "failed");
+  		return query.nSolutions(size);
+  	}
+  	
+  	public java.util.Hashtable[] allSolutions(Term t) {
+  		Query query = new Query(t);
+  		System.err.print("[Prolog] query: " + t + " ");
+  		System.err.println(query.hasSolution() ? "succeeded" : "failed");
+  		return query.allSolutions();
+  	}
+  }
+    \end{javacode}
+  
 
 \subsection{Esempio di interazione}
 
