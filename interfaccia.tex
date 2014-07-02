@@ -1,20 +1,27 @@
-\section{Interfaccia grafica ed esempi di esecuzione}
+\section{Descrizione del sistema}
 
-Il sistema presenta un'interfaccia grafica in grado di permettere l'interazione con il 
+Il sistema presenta un'interfaccia grafica in grado di permettere l'interazione con il core del sistema scritto in Prolog, dando cosi la possibilità a qualunque tipo di stakeholders del sistema di utilizzarlo senza la necessità di dover interagire con il terminale, rendendo cosi le informazioni più leggibili e usabili; Oltre a questo, la creazione dell'interfaccia permette anche di evitare possibili errori dattilografici che si potrebbero avere in caso di interazione con il terminale.
 
-
-DepJaeger esibisce un’interfaccia grafica in grado di gestire le interazioni
-con il nucleo del programma (scritto in Prolog), liberando quindi l’utente
-dall’interazione col terminale, nonch`e di presentare le informazioni restituite
-in maniera più leggibile e più comodamente fruibile. A parte l’evidente comodità d’uso, il sistema rende la fruizione anche intuitiva e scevra da errori dovuti ad errori di tipografia o di sequenza delle operazioni effettuate. Il gestore dell’interfaccia attuerà dei controlli tali da permettere l’attivazione di
-varie funzioni solo quando le azioni richieste per farle funzionare sono state compiute, e guiderà l’utente verso la loro esecuzione. Gli elementi principali dell’interfaccia, con i relativi pulsanti, la cui funzione e uso verranno descritti in dettaglio nel prossimo paragrafo, sono i seguenti (nella figura 4.2, i numeri delle aree corrispondono alle rispettive funzioni assegnate enumerate
+Gli elementi principali dell’interfaccia, con i relativi pulsanti, la cui funzione e uso verranno descritti in dettaglio nel prossimo paragrafo, sono i seguenti (nella figura _, i numeri delle aree corrispondono alle rispettive funzioni assegnate enumerate
 nell’elenco seguente):
-1. Sezione di caricamento dei file
-2. Sezione di analisi dei moduli
-3. Sezione di analisi dei predicati
-4. Sezione di output finale
+1. Sezione di inserimento del documento da cui si devono estrarre le informazioni
+2. Sezione di scelta delle informazioni da estrarre
+2. Sezione di visualizzazione dei risultati ottenuti
 
-\subsection{Schermata iniziale}
+\subsection{Sezioni ed operazioni disponibili}
+    \subsubsection{Inserimento}
+    In questa sezione viene data la possibilità di inserire il documento testuale da cui si vogliono estrarre le informazioni; con questa operazione non si fa altro che asserire un documento da dover poi essere processato dal core prolog del sistema.
+    \subsubsection{Scelta dei tag}
+    In questa sezione si da la possibilità all'utente di filtrare i tag da voler estrarre dal documento attraverso la selezione/deselezione della checkbox corrispondente al tag; con questa operazione si vanno a selezionare quali saranno i tag che il core prolog deve etichettare nel documento.
+    \subsubsection{Visualizzazione}
+    In questa schermata invece verranno mostrate le informazioni che l'utente ha deciso di estrarre dal documento; inoltre le diverse tipologie di tag saranno evidenziate diversamente l'uno dall'altro attraverso l'ausilio di una colorazione dei tag. 
+
+    \subsubsection{Reset delle condizioni iniziali}
+    Tramite il pulsante “Reset” si ripristinano le condizioni iniziali del sistema.
+    Viene ripristinato lo stato iniziale sia dell’interfaccia che del modulo Prolog, la cui working memory viene liberata dei fatti, quindi dai    documenti, appresi durante l’esecuzione.
+
+\subsection{Interazione con l’utente}
+L’interazione avviene principalemente tramite l’interfaccia grafica descritta nelle sezioni seguenti. La comunicazione fra il lato Java e quello Prolog sono riportate nella finestra di terminale da cui si `e lanciato l’eseguibile. Inoltre, viene data la possibilità di utilizzare il sistema anche direttamente dalla linea di comando dell’interprete Prolog, caricando il file main.pl. Le funzionalità offerte rimangono invariate. 
 
 \subsection{Esempio di interazione}
 
