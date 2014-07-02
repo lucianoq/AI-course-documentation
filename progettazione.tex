@@ -1,6 +1,6 @@
 \section{Progettazione}
 
-\subsection{Concettualizzazione}
+\subsection{Obiettivo}
 Dai documenti testuali dovremo poter estrarre delle informazioni principali, quali:
 \begin{itemize}
 \item numero della pratica; %TODO
@@ -17,18 +17,22 @@ Inoltre il sistema si deve occupare di estrarre, su richiesta, altre informazion
 \item etc.
 \end{itemize}
 
+
+\subsection{Input e Assunzioni}
+Non avendo a disposizione dei documenti di input reali sui quali il sistema deve essere in grado di lavorare e, quindi, non conoscendone il formato o la composizione, abbiamo dovuto fare delle assunzioni e realizzare degli esempi di input ad hoc.
+Per essere pronti a successivi adattamenti, abbiamo fatto le scelte meno accomodanti, ipotizzando di non avere a disposizione alcuna strutturazione nel documento o metadati su di esso.
+I nostri esempi di input sono delle semplicissime stringhe prive di \verb+newline+, tabulazioni, ordinamento nello spazio, tag di qualsiasi tipo.
+Nel caso in cui in futuro dovessimo essere in possesso di alcune di queste informazioni, potremmo utilizzarle per migliorare le nostre regole.
+
+
+\subsection{Strategia risolutiva}
+Il problema che affronteremo rientra nell'ambito dell'\emph{Information Extraction}, un task di Intelligenza Artificiale che mira all'estrazione automatica di informazioni strutturate da documenti non-strutturati o semi-strutturati.
+
 \subsection{Oggetti del dominio}
 Per poter estrarre le informazioni a più alto livello quali, ad esempio, \emph{soggetto} e \emph{quantità di denaro richiesta}, dobbiamo utilizzare numerosi oggetti, specifici del dominio giuridico e non.
 
-\begin{prologcode}
-nome("Simone").
-cognome('Rutigliano').
-regola(X) :- 
-	prova(X,Y),
-	ciccio(X),
-	!,
-	regola(Y).
-\end{prologcode}
+\subsubsection{Persone}
+Per l'individuazione delle persone fisiche presenti nel testo (oltre al soggetto della richiesta, anche il giudice, l'avvocato o altre persone nominate nel testo) è utile riuscire a distinguere un \fbox{nome} e un \fbox{cognome}, eventuali \fbox{titoli} quale 
 
 
 \subsection{Individuazione delle funzioni}
@@ -37,4 +41,3 @@ regola(X) :-
 
 \subsection{Dalla concettualizzazione alle regole}
 
-\subsection{Strategia risolutiva}
