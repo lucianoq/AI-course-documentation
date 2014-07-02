@@ -3,11 +3,11 @@ MAINFILE=main
 all : pdf
 
 pdf	: clean
-	pdflatex ${MAINFILE}.tex
-	pdflatex ${MAINFILE}-frn.tex
+	pdflatex -shell-escape ${MAINFILE}.tex
+	pdflatex -shell-escape ${MAINFILE}-frn.tex
 	bibtex ${MAINFILE}
-	pdflatex ${MAINFILE}
-	pdflatex ${MAINFILE}
+	pdflatex -shell-escape ${MAINFILE}
+	pdflatex -shell-escape ${MAINFILE}
 	evince ${MAINFILE}.pdf&
 
 clean	:
