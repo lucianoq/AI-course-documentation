@@ -22,9 +22,24 @@ Inoltre il sistema si deve occupare di estrarre, su richiesta, altre informazion
 \subsection{Oggetti del dominio}
 Per poter estrarre le informazioni a più alto livello quali, ad esempio, \emph{soggetto} e \emph{quantità di denaro richiesta}, dobbiamo utilizzare numerosi oggetti, specifici del dominio giuridico e non.
 
+\begin{minted}[linenos=true,frame=single,bgcolor=light-gray,fontsize=\small]{prolog}
+nome("Simone").
+cognome('Rutigliano').
+regola(X) :- 
+	prova(X,Y),
+	ciccio(X),
+	!,
+	regola(Y).
+\end{minted}
+
 \begin{lstlisting}
 nome("Simone").
-cognome("Rutigliano").
+cognome('Rutigliano').
+regola(X) :- 
+	prova(X,Y),
+	ciccio(X),
+	!,
+	regola(Y).
 \end{lstlisting}
 
 
