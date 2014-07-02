@@ -29,6 +29,7 @@
 *.snm
 *.synctex
 *.synctex.gz
+*.tex~
 *.tdo
 *.toc
 *.vrb

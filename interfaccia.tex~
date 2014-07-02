@@ -124,6 +124,7 @@ La query q in questo esempio rappresenta la query Prolog:
   ?- teacher_of(aristotle,alexander).
 \end{prologcode}
 
+Il sistema presenta 
 \begin{Verbatim}
   JPL.setNativeLibraryDir(yapJPLPath);
   
