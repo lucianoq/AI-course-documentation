@@ -2,26 +2,42 @@
 
 Il sistema presenta un'interfaccia grafica in grado di permettere l'interazione con il core del sistema scritto in Prolog, dando cosi la possibilità a qualunque tipo di stakeholders del sistema di utilizzarlo senza la necessità di dover interagire con il terminale, rendendo cosi le informazioni più leggibili e usabili; Oltre a questo, la creazione dell'interfaccia permette anche di evitare possibili errori dattilografici che si potrebbero avere in caso di interazione con il terminale.
 
-Gli elementi principali dell’interfaccia, con i relativi pulsanti, la cui funzione e uso verranno descritti in dettaglio nel prossimo paragrafo, sono i seguenti (nella figura _, i numeri delle aree corrispondono alle rispettive funzioni assegnate enumerate
+Gli elementi principali dell’interfaccia, con i relativi pulsanti, la cui funzione e uso verranno descritti in dettaglio nel prossimo paragrafo, sono i seguenti (nella figura 1, i numeri delle aree corrispondono alle rispettive funzioni assegnate enumerate
 nell’elenco seguente):
-1. Sezione di inserimento del documento da cui si devono estrarre le informazioni
-2. Sezione di scelta delle informazioni da estrarre
-2. Sezione di visualizzazione dei risultati ottenuti
-
+\begin{itemize}
+	\item Sezione di inserimento del documento da cui si devono estrarre le informazioni
+	\item Sezione di scelta delle informazioni da estrarre
+	\item Sezione di visualizzazione dei risultati ottenuti
+\end{itemize}
 \subsection{Sezioni ed operazioni disponibili}
     \subsubsection{Inserimento}
+    \label{Inserimento}
     In questa sezione viene data la possibilità di inserire il documento testuale da cui si vogliono estrarre le informazioni; con questa operazione non si fa altro che asserire un documento da dover poi essere processato dal core prolog del sistema.
     \subsubsection{Scelta dei tag}
+    \label{ChoiceTag}
     In questa sezione si da la possibilità all'utente di filtrare i tag da voler estrarre dal documento attraverso la selezione/deselezione della checkbox corrispondente al tag; con questa operazione si vanno a selezionare quali saranno i tag che il core prolog deve etichettare nel documento.
     \subsubsection{Visualizzazione}
+    \label{Visualization}
     In questa schermata invece verranno mostrate le informazioni che l'utente ha deciso di estrarre dal documento; inoltre le diverse tipologie di tag saranno evidenziate diversamente l'uno dall'altro attraverso l'ausilio di una colorazione dei tag. 
 
     \subsubsection{Reset delle condizioni iniziali}
-    Tramite il pulsante “Reset” si ripristinano le condizioni iniziali del sistema.
-    Viene ripristinato lo stato iniziale sia dell’interfaccia che del modulo Prolog, la cui working memory viene liberata dei fatti, quindi dai    documenti, appresi durante l’esecuzione.
-
+    Tramite il pulsante \emph{Reset} si ripristinano le condizioni iniziali del sistema.In particolare, viene ripristinato lo stato iniziale:
+    \begin{itemize}
+    	\item \emph{Interfaccia} : cancellando le textbox contenenti il documento inserito \ref{Inserimento} e i tag etichettati dal testo \ref{Visualization}, sia le scelte dei tag da effettuare \ref{ChoiceTag}.
+    	\item \emph{Core Prolog} : ritrattando il documento appena inserito nella sezione \ref{Inserimento}.
+    \end{itemize}
+    
 \subsection{Interazione con l’utente}
-L’interazione avviene principalemente tramite l’interfaccia grafica descritta nelle sezioni seguenti. La comunicazione fra il lato Java e quello Prolog sono riportate nella finestra di terminale da cui si `e lanciato l’eseguibile. Inoltre, viene data la possibilità di utilizzare il sistema anche direttamente dalla linea di comando dell’interprete Prolog, caricando il file main.pl. Le funzionalità offerte rimangono invariate. 
+L’interazione avviene principalmente tramite l’interfaccia grafica descritta nelle sezioni seguenti.
+ La comunicazione fra il lato Java e quello Prolog sono riportate nella finestra di terminale da cui si `e lanciato l’eseguibile. Inoltre, viene data la possibilità di utilizzare il sistema anche direttamente dalla linea di comando dell’interprete Prolog, caricando il file main.pl. Le funzionalità offerte rimangono invariate. 
+ 
+  JPL.setNativeLibraryDir(yapJPLPath);
+  
+  prolog.consult(new Atom("prolog/main.pl"));
+  prolog.retractAll("domanda", 1);
+  Term toAssert = new Compound("domanda", new Term[]{Util.textToTerm("\"" + textPane.getText() + "\"")});
+  prolog.asserta(toAssert);
+  java.util.Hashtable<String, Term>[] hashtables = prolog.allSolutions(new Compound("nextTag", new Term[]{new Variable("Tag")}));
 
 \subsection{Esempio di interazione}
 
