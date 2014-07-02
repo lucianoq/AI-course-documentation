@@ -124,7 +124,6 @@ La query q in questo esempio rappresenta la query Prolog:
   ?- teacher_of(aristotle,alexander).
 \end{prologcode}
 
-Il sistema presenta 
 \begin{Verbatim}
   JPL.setNativeLibraryDir(yapJPLPath);
   
@@ -147,24 +146,6 @@ The Prolog engine must be initialized before any queries are made, but this will
   }
 \end{javacode}
 
-\begin{javacode}  
-  public void asserta(Term term) {
-    Term t = new Compound("asserta", new Term[]{term});
-    Query query = new Query(t);
-    System.err.print("[Prolog] asserta( " + term + " ) ");
-    System.err.println(query.hasSolution() ? "succeeded" : "failed");
-  }
-\end{javacode}
-
-\begin{javacode}
-  public void assertz(Term term) {
-    Term t = new Compound("assertz", new Term[]{term});
-    Query query = new Query(t);
-    System.err.print("[Prolog] assertz( " + term + " ) ");
-    System.err.println(query.hasSolution() ? "succeeded" : "failed");
-  }
-\end{javacode}
-
 \begin{javacode}
   public void retract(Term term) {
     Term t = new Compound("retract", new Term[]{term});
@@ -184,15 +165,6 @@ The Prolog engine must be initialized before any queries are made, but this will
     Query query = new Query(t);
     System.err.print("[Prolog] retract( " + predicate + " ) ");
     System.err.println(query.hasSolution() ? "succeeded" : "failed");
-  }
-\end{javacode}
-
-\begin{javacode}
-  public boolean statisfied(Term t) {
-    Query query = new Query(t);
-    System.err.print("[Prolog] query: " + t + " ");
-    System.err.println(query.hasSolution() ? "succeeded" : "failed");
-    return query.hasSolution();
   }
 \end{javacode}
 
