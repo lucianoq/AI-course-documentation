@@ -1,14 +1,14 @@
 \section{Progettazione}
 
 \subsection{Obiettivo}
-Dai documenti testuali dovremo poter estrarre delle informazioni principali, quali:
+Come primo obiettivo, il sistema deve essere in grado di estrarre, da documenti testuali, alcune informazioni principali, quali:
 \begin{itemize}
 \item numero della pratica; %TODO
 \item soggetto della richiesta di iscrizione;
 \item quantità di denaro richiesta e tipologia.
 \end{itemize}
 
-Inoltre il sistema si deve occupare di estrarre, su richiesta, altre informazioni utili come:
+Come feature aggiuntive, il sistema si può occupare dell'estrazione, su richiesta, di altre informazioni utili come:
 \begin{itemize}
 \item indirizzi email;
 \item numeri di telefono;
@@ -20,13 +20,20 @@ Inoltre il sistema si deve occupare di estrarre, su richiesta, altre informazion
 
 \subsection{Input e Assunzioni}
 Non avendo a disposizione dei documenti di input reali sui quali il sistema deve essere in grado di lavorare e, quindi, non conoscendone il formato o la composizione, abbiamo dovuto fare delle assunzioni e realizzare degli esempi di input ad hoc.
-Per essere pronti a successivi adattamenti, abbiamo fatto le scelte meno accomodanti, ipotizzando di non avere a disposizione alcuna strutturazione nel documento o metadati su di esso.
+Per essere pronti a successivi adattamenti, abbiamo fatto le scelte meno vantaggiose, ipotizzando di non avere a disposizione alcuna strutturazione nel documento o metadati su di esso.
 I nostri esempi di input sono delle semplicissime stringhe prive di \verb+newline+, tabulazioni, ordinamento nello spazio, tag di qualsiasi tipo.
 Nel caso in cui in futuro dovessimo essere in possesso di alcune di queste informazioni, potremmo utilizzarle per migliorare le nostre regole.
 
 
 \subsection{Strategia risolutiva}
 Il problema che affronteremo rientra nell'ambito dell'\emph{Information Extraction}, un task di Intelligenza Artificiale che mira all'estrazione automatica di informazioni strutturate da documenti non-strutturati o semi-strutturati.
+
+Nella maggior parte dei casi, questa attività riguarda l'elaborazione di testi scritti in linguaggio naturale (NLP).
+
+Abbiamo deciso di servirci di alcune delle tecniche di analisi lessicale e sintattica già note e utilizzate in questo campo.
+
+\subsubsection{Lexical Analysis}
+Il testo in input (come già detto testo semplice in una stringa) deve subire una pre-elaborazione lessicale, con l'obiettivo di ottenere una lista di token 
 
 \subsection{Oggetti del dominio}
 Per poter estrarre le informazioni a più alto livello quali, ad esempio, \emph{soggetto} e \emph{quantità di denaro richiesta}, dobbiamo utilizzare numerosi oggetti, specifici del dominio giuridico e non.
