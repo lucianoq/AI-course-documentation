@@ -2,7 +2,8 @@
 
 Il sistema presenta un'interfaccia grafica in grado di permettere l'interazione con il core del sistema scritto in Prolog, dando cosi la possibilità a qualunque tipo di stakeholders del sistema di utilizzarlo senza la necessità di dover interagire con il terminale, rendendo cosi le informazioni più leggibili e usabili; Oltre a questo, la creazione dell'interfaccia permette anche di evitare possibili errori dattilografici che si potrebbero avere in caso di interazione con il terminale.
 
-Gli elementi principali dell’interfaccia, con i relativi pulsanti, la cui funzione e uso verranno descritti in dettaglio nel prossimo paragrafo, sono i seguenti (nella figura 1, i numeri delle aree corrispondono alle rispettive funzioni assegnate enumerate
+Gli elementi principali dell’interfaccia, con i relativi pulsanti, la cui funzione e uso verranno descritti in dettaglio nel prossimo paragrafo, sono i seguenti (nella figura %TODO
+i numeri delle aree corrispondono alle rispettive funzioni assegnate enumerate
 nell’elenco seguente):
 \begin{itemize}
   \item Sezione di inserimento del documento da cui si devono estrarre le informazioni
@@ -30,6 +31,7 @@ nell’elenco seguente):
 \subsection{Interazione con l’utente} %TODO fare predicato per la scelta dei tag da fare
 L’interazione avviene principalmente tramite l'interfaccia grafica descritta nella sezione precedente ma viene data anche la possibilità di interagire con il sistema anche senza l'ausilio di tale interfaccia, utilizzando direttamente l'interprete Prolog da terminale, previa consultazione del modulo principale del sistema denominato \emph{main.pl}; le funzionalità del sistema sono indipendenti dal metodo con cui si vuole interagire con il  sistema. Qualora si volesse tener traccia anche di come avviene la comunicazione tra java e prolog, è possibile visionare tale interazione all'interno della finestra di terminale da cui si è lanciato il sistema.
 
+\subsection{Comunicazione Java Prolog}
 \subsubsection{JPL Library}
 La libreria utilizzata per permettere la bidirezionalità della comunicazione tra Java e Prolog, è stata la \emph{JPL 3.1.4 alpha}\footnote{Scaricabile da \url{http://mvnrepository.com/artifact/jpl/jpl/3.1.4-alpha}} (\textbf{J}ava-calls-\textbf{P}rolog \textbf{L}ibrary)
 
@@ -118,23 +120,38 @@ Ogni istanza di Query contiene un \emph{Term}, il quale rappresenta il goal da d
 	);
   Query q = new Query( goal );
 \end{javacode}
+
 La query q in questo esempio rappresenta la query Prolog:
 
 \begin{prologcode}
   ?- teacher_of(aristotle,alexander).
 \end{prologcode}
 
-\begin{Verbatim}
-  JPL.setNativeLibraryDir(yapJPLPath);
-  
+\subsubsection{Funzionamento}
+Per garantire l'interazione tra Java e Prolog, le principali istruzioni utilizzate per permettere questa comunicazione, sono state le seguenti:
+
+\begin{javacode}
+  JPL.setNativeLibraryDir("/usr/local/lib/Yap");
   prolog.consult(new Atom("prolog/main.pl"));
   prolog.retractAll("domanda", 1);
-  Term toAssert = new Compound("domanda", new Term[]{Util.textToTerm("\"" + textPane.getText() + "\"")});
+  Term toAssert = new Compound("domanda", 
+                  new Term[]{
+                     Util.textToTerm("\"" + textPane.getText() + "\"")}
+                  );
   prolog.asserta(toAssert);
-  java.util.Hashtable<String, Term>[] hashtables = prolog.allSolutions(new Compound("nextTag", new Term[]{new Variable("Tag")}));
-  
-\end{Verbatim}
-The Prolog engine must be initialized before any queries are made, but this will happen automatically (upon the first call to a Prolog FLI routine) if it has not already been done explicitly.
+  java.util.Hashtable<String, Term>[] hashtables = null;
+  hashtables = prolog.allSolutions(new Compound("nextTag", 
+                                  new Term[]{
+                                  	new Variable("Tag")})
+                                  	);  
+\end{javacode}
+\paragraph{inizialize}
+I primi comandi hanno il compito di inizializzare il motore Prolog definendo 
+\begin{itemize}
+	\item Quali librerie utilizzare per la dimostrazione del goal (in questo caso si è deciso di utilizzare le librerie di \emph{Yap});
+	\item Definire la base di conoscenza tramite i consult, i retract e gli assert, sia dei fatti che delle regole da utilizzare.
+\end{itemize}
+Il codice java atto a realizzare sia la consult che la retract è il seguente:
 
 \begin{javacode}
   public boolean consult(Atom atom) {
@@ -143,15 +160,6 @@ The Prolog engine must be initialized before any queries are made, but this will
     System.out.print("[Prolog] consult: " + t + " ");
     System.out.println(query.hasSolution() ? "succeeded" : "failed");
     return query.hasSolution();
-  }
-\end{javacode}
-
-\begin{javacode}
-  public void retract(Term term) {
-    Term t = new Compound("retract", new Term[]{term});
-    Query query = new Query(t);
-    System.err.print("[Prolog] retract( " + term + " ) ");
-    System.err.println(query.hasSolution() ? "succeeded" : "failed");
   }
 \end{javacode}
 
@@ -168,23 +176,8 @@ The Prolog engine must be initialized before any queries are made, but this will
   }
 \end{javacode}
 
-\begin{javacode}
-  public java.util.Hashtable oneSolution(Term t) {
-    Query query = new Query(t);
-    System.err.print("[Prolog] query: " + t + " ");
-    System.err.println(query.hasSolution() ? "succeeded" : "failed");
-    return query.oneSolution();
-  }
-\end{javacode}
-
-\begin{javacode}
-  public java.util.Hashtable[] nSolutions(Term t, long size) {
-    Query query = new Query(t);
-    System.err.print("[Prolog] query: " + t + " ");
-    System.err.println(query.hasSolution() ? "succeeded" : "failed");
-    return query.nSolutions(size);
-  }
-\end{javacode}
+\paragraph{Queries}
+Una volta ultimata l'inizializzazione, il passo successivo sarà quello di estrarre i risultati del tag che il sistema ha prodotto; per fare ciò, verranno create delle query parametrizzate adeguatamente da Termini e i risultati verranno inseriti all'interno di un array di tipo Hashtable.
 
 \begin{javacode}
   public java.util.Hashtable[] allSolutions(Term t) {
@@ -195,7 +188,6 @@ The Prolog engine must be initialized before any queries are made, but this will
   }
 }
 \end{javacode}
-    
 
 \subsection{Esempio di interazione}
 
