@@ -33,7 +33,18 @@ Nella maggior parte dei casi, questa attività riguarda l'elaborazione di testi 
 Abbiamo deciso di servirci di alcune delle tecniche di analisi lessicale e sintattica già note e utilizzate in questo campo.
 
 \subsubsection{Lexical Analysis}
-Il testo in input (come già detto testo semplice in una stringa) deve subire una pre-elaborazione lessicale, con l'obiettivo di ottenere una lista di token 
+Il testo in input (come già detto testo semplice in una stringa) subisce una pre-elaborazione lessicale, con l'obiettivo di ottenere una lista di token da passare al tagger (\ref{tagger}).
+
+Questa pre-elaborazione principalmente si occupa di:
+\begin{itemize}
+\item eliminare i caratteri \emph{inutili} per i nostri scopi quali, ad esempio, \verb+-+, \verb+!+, \verb+?+;
+\item normalizzare tutte le lettere in minuscolo;
+\item produrre una lista di atomi che saranno i token in input al tagger.
+\end{itemize}
+
+\subsubsection{Syntactic Analysis}
+\label{tagger}
+Il tagger è la componente che lavora su liste di token alla ricerca di pattern noti per poter assegnare dei ruoli
 
 \subsection{Oggetti del dominio}
 Per poter estrarre le informazioni a più alto livello quali, ad esempio, \emph{soggetto} e \emph{quantità di denaro richiesta}, dobbiamo utilizzare numerosi oggetti, specifici del dominio giuridico e non.
