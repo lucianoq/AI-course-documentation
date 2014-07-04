@@ -1,4 +1,28 @@
 \section{Implementazione}
+
+\subsection{Architettura del sistema}
+Per preservare l'indipendenza delle componenti del sistema, abbiamo realizzato dei moduli Prolog che espongano pubblicamente solo i predicati necessari.
+
+Il file \verb+main.pl+ costituisce l'entry-point del programma, l'unico file necessario da importare nell'interprete per l'esecuzione.
+
+Come anticipato nella sezione~\ref{sec:Progettazione}, il sistema è composto principalmente da un \emph{lexer} e da un \emph{tagger}.
+
+
+
+
+
+
+
+
+Lo schema delle dipendenze è mostrato in figura~\ref{fig:moduli}.
+
+\begin[h!tbp]{figure}
+\includegraphics[width=\textwidth]{img/struttura_moduli.png}
+\label{fig:moduli}
+\end{figure}
+
+
+
 \subsection{Tagger}
 \begin{prologcode}
 tagger(ListToken,ListTagged) :-
