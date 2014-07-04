@@ -1,3 +1,27 @@
 \section{Implementazione}
+\subsection{Tagger}
+\begin{prologcode}
+tagger(ListToken,ListTagged) :-
+    tag_persona(ListToken,A),
+    tag_indirizzo(A,A1),
+    tag_mail(A1,B),
+    tag_money(B,C),
+    tag_date(C,D),
+    tag_comune(D,E),
+    tag_cf(E,F),
+    tag_numero_telefono(F,G),
+    filter_stopwords(G,ListTagged).
+\end{prologcode}
+
+\begin{prologcode}
+tag_persona(List,ListTagged) :-
+	tag_aggettivo(List,A),
+	tag_ruolo(A,B),
+	strip_aggettivi(B,C),
+	tag_nome(C,D),
+	tag_titolo(D,ListTagged).
+\end{prologcode}
+
+
 \subsection{Le regole}
 \subsection{L'inferenza}
