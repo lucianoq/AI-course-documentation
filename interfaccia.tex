@@ -33,6 +33,7 @@ L’interazione avviene principalmente tramite l'interfaccia grafica descritta n
 
 \subsection{Comunicazione Java Prolog}
 \subsubsection{JPL Library}
+\nocite{swi:jpl}
 La libreria utilizzata per permettere la bidirezionalità della comunicazione tra Java e Prolog, è stata la \emph{JPL 3.1.4 alpha}\footnote{Scaricabile da \url{http://mvnrepository.com/artifact/jpl/jpl/3.1.4-alpha}} (\textbf{J}ava-calls-\textbf{P}rolog \textbf{L}ibrary)
 
 Le API messe a disposizione dalla libreria JPL permettono la creazione di oggetti Java che andranno a inglobare gli elementi che saranno poi utilizzati lato Prolog. La struttura gerarchica delle classi presenti nella libreria è la seguente:
@@ -164,34 +165,31 @@ Il codice java atto a realizzare sia la consult che la retract è il seguente:
 \end{javacode}
 
 \begin{javacode} 
-  public void retractAll(String predicate, int arity) {  
-    Term[] args = new Term[arity];
-    for (int i = 0; i < args.length; i++)
-    	args[i] = new Variable("_");
-    Term[] termToRetract = new Term[]{ new Compound(predicate, args) };    
-    Term t = new Compound("retractall", termToRetract);
-    Query query = new Query(t);
-    System.err.print("[Prolog] retract( " + predicate + " ) ");
-    System.err.println(query.hasSolution() ? "succeeded" : "failed");
-  }
+ public void retractAll(String predicate, int arity) {  
+   Term[] args = new Term[arity];
+   for (int i = 0; i < args.length; i++)
+   	args[i] = new Variable("_");
+   Term[] termToRetract = new Term[]{ new Compound(predicate, args) };    
+   Term t = new Compound("retractall", termToRetract);
+   Query query = new Query(t);
+   System.err.print("[Prolog] retract( " + predicate + " ) ");
+   System.err.println(query.hasSolution() ? "succeeded" : "failed");
+ }
 \end{javacode}
 
 \paragraph{Queries}
 Una volta ultimata l'inizializzazione, il passo successivo sarà quello di estrarre i risultati del tag che il sistema ha prodotto; per fare ciò, verranno create delle query parametrizzate adeguatamente da Termini e i risultati verranno inseriti all'interno di un array di tipo Hashtable.
 
 \begin{javacode}
-  public java.util.Hashtable[] allSolutions(Term t) {
-    Query query = new Query(t);
-    System.err.print("[Prolog] query: " + t + " ");
-    System.err.println(query.hasSolution() ? "succeeded" : "failed");
-    return query.allSolutions();
-  }
-}
+ public java.util.Hashtable[] allSolutions(Term t) {
+   Query query = new Query(t);
+   System.err.print("[Prolog] query: " + t + " ");
+   System.err.println(query.hasSolution() ? "succeeded" : "failed");
+   return query.allSolutions();
+ }
 \end{javacode}
 
 \subsection{Esempio di interazione}
-
-\subsection{Utilizzo della funzione spiega domanda}
 
 \subsection{Presentazione dei risultati}
 
