@@ -92,7 +92,7 @@ Le Variabili sono dei Term aventi un nome identificativo il quale deve soddisfar
 Variable X = new Variable("X");  //  variabile X
 Variable X = new Variable("_");  //  variabile "anonima"
 Variable X = new Variable("_Y"); // variabile Y di cui non si vuole 
-				 // conoscere il contenuto
+                 // conoscere il contenuto
 \end{javacode}
 
 \paragraph{Integer}
@@ -113,12 +113,12 @@ Un Float è una specializzazione di \emph{Term} che mantiene la valorizzazione d
 Ogni istanza di Query contiene un \emph{Term}, il quale rappresenta il goal da dimostrare.
 
 \begin{javacode}
-	Term goal = new Compound("teacher_of",
-	new Term[] {
-		new Atom("aristotle"),
-		new Atom("alexander")
-	}
-	);
+  Term goal = new Compound("teacher_of",
+    new Term[] {
+        new Atom("aristotle"),
+        new Atom("alexander")
+        }
+  );
   Query q = new Query( goal );
 \end{javacode}
 
@@ -143,14 +143,14 @@ Per garantire l'interazione tra Java e Prolog, le principali istruzioni utilizza
   java.util.Hashtable<String, Term>[] hashtables = null;
   hashtables = prolog.allSolutions(new Compound("nextTag", 
                                   new Term[]{
-                                  	new Variable("Tag")})
-                                  	);  
+                                      new Variable("Tag")})
+                                      );  
 \end{javacode}
 \paragraph{inizialize}
 I primi comandi hanno il compito di inizializzare il motore Prolog definendo 
 \begin{itemize}
-	\item Quali librerie utilizzare per la dimostrazione del goal (in questo caso si è deciso di utilizzare le librerie di \emph{Yap});
-	\item Definire la base di conoscenza tramite i consult, i retract e gli assert, sia dei fatti che delle regole da utilizzare.
+    \item Quali librerie utilizzare per la dimostrazione del goal (in questo caso si è deciso di utilizzare le librerie di \emph{Yap});
+    \item Definire la base di conoscenza tramite i consult, i retract e gli assert, sia dei fatti che delle regole da utilizzare.
 \end{itemize}
 Il codice java atto a realizzare sia la consult che la retract è il seguente:
 
@@ -168,7 +168,7 @@ Il codice java atto a realizzare sia la consult che la retract è il seguente:
  public void retractAll(String predicate, int arity) {  
    Term[] args = new Term[arity];
    for (int i = 0; i < args.length; i++)
-   	args[i] = new Variable("_");
+       args[i] = new Variable("_");
    Term[] termToRetract = new Term[]{ new Compound(predicate, args) };    
    Term t = new Compound("retractall", termToRetract);
    Query query = new Query(t);
