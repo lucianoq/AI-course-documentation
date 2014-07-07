@@ -85,7 +85,6 @@ Invece, per l'individuazione delle tipologie di richieste, si è preferito unifo
 
 Di seguito il predicato \emph{tag\_money} in grado di eseguire le operazioni descritte nel paragrafo.
 
-
 \begin{prologcode}
 tag_money(A,F) :- 
     tag_currency(A,B),
@@ -94,6 +93,16 @@ tag_money(A,F) :-
     tag_totale(D,E),
     tag_richiesta(E,F).
 \end{prologcode}
+
+\subsection{Informazioni aggiuntive}
+
+%TODO
+%tag\_mail
+%tag\_date
+%tag\_comune
+%tag\_cf
+%tag\_numero\_telefono
+%filter\_stopwords
 
 %TODO JPL DEPRECATED LIST
 
