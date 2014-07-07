@@ -15,13 +15,20 @@ Lo schema delle dipendenze è mostrato in figura~\ref{fig:moduli}.
 \end{figure}
 
 \subsection{Lexer}
-Il compito del \emph{lexer} sarà quello di normalizzare la stringa contenente il documento da analizzare in una lista di token su cui poi il tagger dovrà fare le sue analisi. Per fare ciò, bisognerà nell'ordine: 
+Il compito del \emph{lexer} sarà quello di normalizzare la stringa contenente il documento da analizzare in una lista di token su cui poi il tagger dovrà fare le sue analisi. Per fare ciò, bisognerà nell'ordine:
 \begin{itemize}
     \item ripulire la stringa di stopchars;
     \item separare i caratteri speciali (punto, virgola, euro e chiocciola) da eventuali caratteri a cui sono associati;
     \item eliminare eventuali spazi bianchi superflui causati da eliminazioni di caratteri fatte in precedenza;
     \item rendere case insensitive la stringa ripulita.
 \end{itemize}
+
+Per quanto riguarda la pulizia delle stopchars più ininfluenti ai fini del tag, si è deciso di eliminare i caratteri quali il punto interrogativo, il punto esclamativo, virgolette, apici, punti e virgola, due punti e parentesi tonde e graffe. Altri eventuali stopchars si è deciso di mantenerli nel testo in quanto possono risultare utili nella fase successiva.
+
+I caratteri speciali quali virgola, punto e chiocciola, non solo non sono stati eliminati, ma sono stati accuratamente separati dalle stringhe a cui sono associati, in quanto, in questo modo risultava essere più facile analizzare, per poi successivamente taggare, le email presenti nel documento.
+
+Stesso discorso va fatto anche per un altro carattere speciale quale il simbolo dell'euro; questo risulta essere molto utile non eliminarlo in quanto viene usato per individuare la presenza di valori monetari all'interno del documento.
+
 Di seguito il predicato lexer:
 
 \begin{prologcode}
